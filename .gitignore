@@ -1,0 +1,7 @@
+*CMakeLists.txt
+code/Fast-Drone-250/*
+code/Fast-Drone-250/
+code/Fast-Drone-250/devel/
+code/Fast-Drone-250/build/
+code/Fast-Drone-250/src/realflight_modules
+# realflight_modules

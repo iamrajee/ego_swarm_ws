@@ -1,0 +1,1 @@
+source /opt/ros/noetic/setup.bash && source devel/setup.sh && roslaunch ego_planner my_main.launch

@@ -1,0 +1,50 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name='drone'>
+    <link name='drone__base_link'>
+      <inertial>
+        <pose>-0.00021 -0.00973 0.0409 0 -0 1.57</pose>
+        <mass>0.39563</mass>
+        <inertia>
+          <ixx>0.00084919</ixx>
+          <ixy>-4.3943e-06</ixy>
+          <ixz>2.0367e-10</ixz>
+          <iyy>0.00069336</iyy>
+          <iyz>-3.0121e-06</iyz>
+          <izz>0.0014819</izz>
+        </inertia>
+      </inertial>
+      <collision name='drone__base_link_collision_collision'>
+        <pose>0 0 0 0 -0 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>0.2 0.2 0.2</scale>
+            <uri>model://flocking/models/drone/meshes/base_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='drone__base_link_visual_visual'>
+        <pose>0 0 0 0 -0 1.57</pose>
+        <geometry>
+          <mesh>
+            <scale>0.2 0.2 0.2</scale>
+            <uri>model://flocking/models/drone/meshes/base_link.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>0</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+    </link>
+  </model>
+</sdf>
