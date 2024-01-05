@@ -3,7 +3,7 @@
 */build/
 */devel/
 files/
-src/CMakeLists.txt
+#src/CMakeLists.txt
 benchmark_haha.zip
 rebound_planner_BB.zip
 *.mp4
