@@ -37,7 +37,7 @@ def spawn_drone():
     initial_pose.position.y = 0
     initial_pose.position.z = 1
 
-    f = open('/home/rajendra/drone_swarm/code/EGO-Planner-v2/swarm-playground/formation_ws/src/planner/plan_manage/scripts/drone.sdf','r')
+    f = open('/home/rajendra/ego_swarm_ws/code/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/scripts/drone.sdf','r')
     sdff = f.read()
 
     rospy.wait_for_service('gazebo/spawn_sdf_model')

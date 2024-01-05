@@ -56,12 +56,16 @@
   <build_depend>traj_utils</build_depend>
   <build_depend>path_searching</build_depend>
 
+  <depend>gazebo_ros</depend> <!--new -->
+
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
   <build_export_depend>plan_env</build_export_depend>
   <build_export_depend>traj_utils</build_export_depend>
   <build_export_depend>traj_opt</build_export_depend>
   <build_export_depend>path_searching</build_export_depend>
+
+  <exec_depend>gazebo</exec_depend> <!--new -->
 
   <exec_depend>roscpp</exec_depend>
   <exec_depend>plan_env</exec_depend>
@@ -76,7 +80,8 @@
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-
+    <gazebo_ros gazebo_media_path="${prefix}"/>
+    <gazebo_ros gazebo_model_path="${prefix}/models"/>
   </export>
 </package>
 
