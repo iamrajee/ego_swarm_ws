@@ -1,0 +1,1 @@
+source ~/ego_swarm_ws/code/EGO-Planner-v2/swarm-playground/main_ws/devel/setup.bash && roslaunch ego_planner my_multi_drone_interactive.launch gui:=false

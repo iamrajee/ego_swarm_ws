@@ -180,6 +180,7 @@
     </include> -->
 
     <node pkg="ego_planner" name="graph_visual_marker" type="graph_visual_marker.py" output="screen" />
+    <node pkg="ego_planner" name="comm_graph_visual_marker" type="comm_graph_visual_marker.py" output="screen" />
 
 	<arg name="world_name" default="camera_gazebo.world"/>
 	<arg name="gui" default="true"/>

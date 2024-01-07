@@ -1,0 +1,1 @@
+source ~/swarm_ws/devel/setup.bash && rosrun flocking swarm_detection.py

@@ -33,7 +33,7 @@ def move_formation(goal_pub, rate):
     move(1, goalx + x1, goaly + y1, 0, goal_pub, rate)
     move(2, goalx + x2, goaly + y2, 0, goal_pub, rate)
     move(3, goalx + x3, goaly + y3, 0, goal_pub, rate)
-    move(4, goalx + x4, goaly + y4, 0.25, goal_pub, rate)
+    move(4, goalx + x4, goaly + y4, 0.15, goal_pub, rate) #z=0.25
     move(5, goalx + x5, goaly + y5, 0, goal_pub, rate)
     move(6, goalx + x6, goaly + y6, 0, goal_pub, rate)
     move(7, goalx + x7, goaly + y7, 0, goal_pub, rate)
@@ -51,16 +51,17 @@ def publish_goal():
         rospy.loginfo("Waiting for subscribers to connect")
         rospy.sleep(1)
     
-    goalx,goaly=2.0,2.0
+    gvalue=1.5
+    goalx,goaly=gvalue,gvalue
     move_formation(goal_pub, rate)
-    goalx,goaly=2.0,-2.0
+    goalx,goaly=gvalue,-gvalue
     move_formation(goal_pub, rate)
-    goalx,goaly=-2.0,-2.0
+    goalx,goaly=-gvalue,-gvalue
     move_formation(goal_pub, rate)
-    goalx,goaly=-2.0,2.0
+    goalx,goaly=-gvalue,gvalue
     move_formation(goal_pub, rate)
-    # goalx,goaly=0.0,0.0
-    # move_formation(goal_pub, rate)
+    goalx,goaly=gvalue,gvalue
+    move_formation(goal_pub, rate)
 
     print("close")
 

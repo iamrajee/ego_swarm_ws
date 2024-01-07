@@ -1,0 +1,1 @@
+source ~/swarm_ws/devel/setup.bash && rosrun flocking communication2_swarm_tracking.py _/display:=True _/img_topic:=/stereo_camera/left/image_rect_color _/min_hits:=1 _/max_age:=100 _/iou_threshold:=0.2 _/bbox_topic:=darknet_ros/bounding_boxes_nms/
