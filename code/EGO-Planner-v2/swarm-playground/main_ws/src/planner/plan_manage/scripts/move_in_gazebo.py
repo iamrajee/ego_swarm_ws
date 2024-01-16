@@ -19,8 +19,8 @@ def generate_circular_trajectory(radius, num_points):
     theta += 2 * math.pi / num_points  # Increment angle for next point
   return points
 
-radius = 3
-num_points = 25  # Adjust for desired number of points
+radius = 2
+num_points = 2500  # Adjust for desired number of points
 trajectory = generate_circular_trajectory(radius, num_points)
 trajectory_itr=0
 
@@ -35,8 +35,12 @@ drone_cords_offset = [[0.5,0.5,0.5],[0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,-0.5,0.5
 #drone1->drone2->drone3->drone4->drone1...
 
 number_of_drones=4
+
+# Ring
 drone_id_of_interest=(int(drone_id)%number_of_drones) + 1
 
+# star
+# drone_id_of_interest= 1
 
 def update_position():
     
@@ -51,8 +55,8 @@ def update_position():
     model_name_of_interest = "drone_" + str(drone_id_of_interest)
     model_state_of_interest = get_model_state(model_name_of_interest, "")
     
-    model_state_of_interest.pose.position.x += model_state_of_interest.pose.position.x + (drone_cords_offset[int(drone_id) - 1][0] - drone_cords_offset[drone_id_of_interest - 1][0])
-    model_state_of_interest.pose.position.y += model_state_of_interest.pose.position.y + (drone_cords_offset[int(drone_id) - 1][1] - drone_cords_offset[drone_id_of_interest - 1][1])
+    model_state_of_interest.pose.position.x += (drone_cords_offset[int(drone_id) - 1][0] - drone_cords_offset[drone_id_of_interest - 1][0])
+    model_state_of_interest.pose.position.y += (drone_cords_offset[int(drone_id) - 1][1] - drone_cords_offset[drone_id_of_interest - 1][1])
     model_state_of_interest.pose.position.z=0.5#+= model_state_of_interest.pose.position.z + (drone_cords_offset[int(drone_id) - 1][2] - drone_cords_offset[drone_id_of_interest - 1][2])
 
     model_state = ModelState()
