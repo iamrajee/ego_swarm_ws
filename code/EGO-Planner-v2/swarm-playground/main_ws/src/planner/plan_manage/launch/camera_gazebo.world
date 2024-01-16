@@ -246,8 +246,8 @@
             <updateRate>0.0</updateRate>
             <!-- <imageTopicName>image_raw_top_left</imageTopicName>
             <cameraInfoTopicName>camera_info_top_left</cameraInfoTopicName> -->
-            <imageTopicName>stereo_camera/left/image_raw</imageTopicName>
-            <cameraInfoTopicName>stereo_camera/left/camera_info</cameraInfoTopicName>
+            <imageTopicName>stereo_camera2/left/image_raw</imageTopicName>
+            <cameraInfoTopicName>stereo_camera2/left/camera_info</cameraInfoTopicName>
             <frameName>camera_top_left</frameName>
         </plugin>
         </sensor>
@@ -284,8 +284,8 @@
             <updateRate>0.0</updateRate>
             <!-- <imageTopicName>image_raw_top_right</imageTopicName>
             <cameraInfoTopicName>camera_info_top_right</cameraInfoTopicName> -->
-            <imageTopicName>stereo_camera/right/image_raw</imageTopicName>
-            <cameraInfoTopicName>stereo_camera/right/camera_info</cameraInfoTopicName>
+            <imageTopicName>stereo_camera2/right/image_raw</imageTopicName>
+            <cameraInfoTopicName>stereo_camera2/right/camera_info</cameraInfoTopicName>
             <frameName>camera_top_right</frameName>
         </plugin>
         </sensor>

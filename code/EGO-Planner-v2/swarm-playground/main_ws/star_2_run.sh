@@ -1,0 +1,1 @@
+source devel/setup.bash && roslaunch ego_planner star_my_multi_drone_interactive.launch gui:=false

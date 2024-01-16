@@ -15,12 +15,14 @@ def distance(point1, point2):
 
 # Remove edges to make the graph acyclic
 def make_acyclic(graph):
-    for edge in graph.edges():
-        graph.remove_edge(*edge)
-        if nx.is_connected(graph):
-            continue
-        else:
-            graph.add_edge(*edge)  # Re-add the edge if it breaks connectivity
+    global G
+    G=nx.minimum_spanning_tree(graph)
+    # for edge in graph.edges():
+    #     graph.remove_edge(*edge)
+    #     if nx.is_connected(graph):
+    #         continue
+    #     else:
+    #         graph.add_edge(*edge)  # Re-add the edge if it breaks connectivity
             
 # def plot_graph(fig, ax,i,x,y,z,pos,G):
 #     # Plot nodes
@@ -67,6 +69,10 @@ def update(i):
         edge_y = [start[1], end[1]]
         edge_z = [start[2], end[2]]
         ax.plot(edge_x, edge_y, edge_z, c='black')
+        
+    # Label nodes with their IDs
+    for node, (x_, y_, z_) in pos.items():
+        ax.text(x_, y_, z_, str(node), fontsize=12, color='red')
 
     plt.title(str(i)+":Acyclic Graph from XYZ Coordinates")
     plt.axis('off')

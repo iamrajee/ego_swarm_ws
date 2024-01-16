@@ -1,0 +1,29 @@
+<launch>
+    
+    <arg name="world_name" default="camera_gazebo.world"/>
+	<arg name="gui" default="true"/>
+    <arg name="drone_id1" value="1"/>
+    <arg name="drone_id2" value="2"/>
+    <arg name="drone_id3" value="3"/>
+    <arg name="drone_id4" value="4"/>
+
+	<include file="$(find ego_planner)/launch/world.launch">
+		<arg name="world_name" value="$(find ego_planner)/launch/$(arg world_name)"/>
+		<arg name="gui" value="$(arg gui)"/>
+	</include>
+
+	<node ns="/stereo_camera" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" required="true" args="_approximate_sync:=True"/>
+	<!-- <node pkg="image_view" type="disparity_view" name="disparity_view" required="true" args="image:=/stereo_camera/disparity"/> -->
+
+    <node pkg="ego_planner" name="drone_$(arg drone_id1)_in_gazebo" type="drone_in_gazebo.py" args="$(arg drone_id1)" output="screen" />
+    <node pkg="ego_planner" name="drone_$(arg drone_id2)_in_gazebo" type="drone_in_gazebo.py" args="$(arg drone_id2)" output="screen" />
+    <node pkg="ego_planner" name="drone_$(arg drone_id3)_in_gazebo" type="drone_in_gazebo.py" args="$(arg drone_id3)" output="screen" />
+    <node pkg="ego_planner" name="drone_$(arg drone_id4)_in_gazebo" type="drone_in_gazebo.py" args="$(arg drone_id4)" output="screen" />
+
+    <node pkg="ego_planner" name="move_$(arg drone_id1)_in_gazebo" type="move_in_gazebo.py" args="$(arg drone_id1)" output="screen" />
+    <node pkg="ego_planner" name="move_$(arg drone_id2)_in_gazebo" type="move_in_gazebo.py" args="$(arg drone_id2)" output="screen" />
+    <node pkg="ego_planner" name="move_$(arg drone_id3)_in_gazebo" type="move_in_gazebo.py" args="$(arg drone_id3)" output="screen" />
+    <node pkg="ego_planner" name="move_$(arg drone_id4)_in_gazebo" type="move_in_gazebo.py" args="$(arg drone_id4)" output="screen" />
+
+
+</launch>

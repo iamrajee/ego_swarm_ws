@@ -35,7 +35,7 @@ def spawn_drone():
     initial_pose = Pose()
     initial_pose.position.x = 0
     initial_pose.position.y = 0
-    initial_pose.position.z = 1
+    initial_pose.position.z = float(drone_id)
 
     f = open('/home/rajendra/ego_swarm_ws/code/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/scripts/drone.sdf','r')
     sdff = f.read()

@@ -1,5 +1,6 @@
 <launch>
     <!-- size of map, change the size inflate x, y, z according to your application -->
+    <arg name="isstarnode" default="false"/>
     <arg name="drone_id" default="0"/>
     <arg name="map_size_x"/>
     <arg name="map_size_y"/>
@@ -93,12 +94,21 @@
         <arg name="init_z_" value="$(arg init_z)"/>
         <arg name="odometry_topic" value="$(arg odom_topic)" />
     </include>
+
     <include file="$(find manual_take_over)/launch/take_over_drone.launch">
         <arg name="drone_id" value="$(arg drone_id)"/>
         <arg name="cmd_topic" value="drone_$(arg drone_id)_planning/pos_cmd"/>
     </include>
 
     <node pkg="ego_planner" name="drone_$(arg drone_id)_in_gazebo" type="drone_in_gazebo.py" args="$(arg drone_id)" output="screen" />
+
+    <!-- swarm topic transmitter bridge-->
+    <!-- <group if="$(arg isstarnode)">
+        <include file="$(find swarm_bridge)/launch/bridge_udp.launch">
+            <arg name="drone_id" value="999"/>
+            <arg name="broadcast_ip" value="127.0.0.255"/>
+        </include>
+    </group> -->
 
 </launch>
     
