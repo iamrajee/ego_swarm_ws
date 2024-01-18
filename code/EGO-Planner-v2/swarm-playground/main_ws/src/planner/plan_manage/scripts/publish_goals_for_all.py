@@ -4,9 +4,9 @@ from quadrotor_msgs.msg import GoalSet
 from std_msgs.msg import Header
 import time
 
-delay_time =1    
-delay_between_formation_time =7
-    
+delay_time =0#1    
+delay_between_formation_time =10
+  
 x0,y0=0.5,0.0
 x1,y1=0.0,0.5
 x2,y2=-0.5,0.0
@@ -16,16 +16,24 @@ x5,y5=-0.5,0.5
 x6,y6=-0.5,-0.5
 x7,y7=0.5,-0.5
 
-'''
-x0,y0=0.5,0.0
-x1,y1=0.0,0.5
-x2,y2=-0.5,0.0
-x3,y3=0.0,-0.5
-x4,y4=0.5,0.5
-x5,y5=-0.5,0.5
-x6,y6=-0.5,-0.5
-x7,y7=0.5,-0.5
-'''
+# x0,y0=0.5,0.0
+# x1,y1=0.0,0.5
+# x2,y2=-0.5,0.0
+# x3,y3=0.0,-0.5
+# x4,y4=0.25,0.25
+# x5,y5=-0.25,0.25
+# x6,y6=-0.25,-0.25
+# x7,y7=0.25,-0.25
+
+# x0,y0=1.0,0.0
+# x1,y1=0.0,1.0
+# x2,y2=-1.0,0.0
+# x3,y3=0.0,-1.0
+# x4,y4=0.50,0.50
+# x5,y5=-0.50,0.50
+# x6,y6=-0.50,-0.50
+# x7,y7=0.50,-0.50
+
 
 goalx,goaly=-2.0,-2.0
     
@@ -45,7 +53,7 @@ def move_formation(goal_pub, rate):
     move(1, goalx + x1, goaly + y1, 0, goal_pub, rate)
     move(2, goalx + x2, goaly + y2, 0, goal_pub, rate)
     move(3, goalx + x3, goaly + y3, 0, goal_pub, rate)
-    move(4, goalx + x4, goaly + y4, 0.25, goal_pub, rate)
+    move(4, goalx + x4, goaly + y4, 0, goal_pub, rate)
     move(5, goalx + x5, goaly + y5, 0, goal_pub, rate)
     move(6, goalx + x6, goaly + y6, 0, goal_pub, rate)
     move(7, goalx + x7, goaly + y7, 0, goal_pub, rate)

@@ -23,6 +23,7 @@ def move_cb(msg):
     model_state = ModelState()
     model_state.model_name = "drone_"+drone_id
     model_state.pose=msg.pose.pose #temp_pose
+    model_state.twist=msg.twist.twist
     rospy.wait_for_service('/gazebo/set_model_state')
     set_state = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
     resp = set_state(model_state)
@@ -37,7 +38,7 @@ def spawn_drone():
     initial_pose.position.y = 0
     initial_pose.position.z = float(drone_id)
 
-    f = open('/home/rajendra/ego_swarm_ws/code/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/scripts/drone.sdf','r')
+    f = open('/home/rajendra/ego_swarm_ws/code/EGO-Planner-v2/swarm-playground/main_ws/src/planner/plan_manage/scripts/new_drone.sdf','r')
     sdff = f.read()
 
     rospy.wait_for_service('gazebo/spawn_sdf_model')

@@ -119,8 +119,8 @@ namespace ego_planner
 
     case SEQUENTIAL_START: // for swarm or single drone with drone_id = 0
     {
-      if (planner_manager_->pp_.drone_id <= 0 || (planner_manager_->pp_.drone_id >= 1 && have_recv_pre_agent_))
-      {
+      // if (planner_manager_->pp_.drone_id <= 0 || (planner_manager_->pp_.drone_id >= 1 && have_recv_pre_agent_))
+      // {
         bool success = planFromGlobalTraj(10); // zx-todo
         if (success)
         {
@@ -131,7 +131,7 @@ namespace ego_planner
           ROS_WARN("Failed to generate the first trajectory, keep trying");
           changeFSMExecState(SEQUENTIAL_START, "FSM"); // "changeFSMExecState" must be called each time planned
         }
-      }
+      // }
 
       break;
     }
