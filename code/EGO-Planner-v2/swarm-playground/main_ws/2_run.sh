@@ -1,1 +1,1 @@
-source devel/setup.bash && roslaunch ego_planner my_multi_drone_interactive.launch gui:=false
+source devel/setup.bash && roslaunch ego_planner my_multi_drone_interactive.launch gui:=true

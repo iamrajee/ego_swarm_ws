@@ -27,6 +27,8 @@
         <arg name="drone_id" value="999"/>
         <arg name="broadcast_ip" value="127.0.0.255"/>
     </include>
+
+
     <node pkg ="assign_goals" name ="assign_goals_node" type ="assign_goals_node" output = "screen"/>
     <!-- map -->
     <node pkg ="map_generator" name ="random_forest" type ="random_forest" output = "screen">
@@ -189,7 +191,7 @@
 	</include>
 
 	<node ns="/stereo_camera" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" required="true" args="_approximate_sync:=True"/>
-	<node pkg="image_view" type="disparity_view" name="disparity_view" required="true" args="image:=/stereo_camera/disparity"/>
+	<!-- <node pkg="image_view" type="disparity_view" name="disparity_view" required="true" args="image:=/stereo_camera/disparity"/> -->
 
     <node pkg="ego_planner" name="publish_goals_for_all" type="publish_goals_for_all.py" output="screen" />
 

@@ -56,6 +56,6 @@ target_link_libraries(traj_server ${catkin_LIBRARIES})
 # add_dependencies(traj_server ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 
-catkin_install_python (PROGRAMS scripts/spawn_model.py scripts/spawn_drones.py scripts/move_drones.py scripts/drone_in_gazebo.py scripts/graph_visual_marker.py
+catkin_install_python (PROGRAMS scripts/spawn_model.py scripts/spawn_drones.py scripts/move_drones.py scripts/drone_in_gazebo.py scripts/graph_visual_marker.py scripts/communication_architecture.py
 DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

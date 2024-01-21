@@ -4,7 +4,7 @@ import rospy
 from geometry_msgs.msg import Pose, PoseArray
 from nav_msgs.msg import Odometry
 from gazebo_msgs.msg import ModelState 
-from gazebo_msgs.srv import SpawnModel, SetModelState
+from gazebo_msgs.srv import SpawnModel, SetModelState, GetModelState
 from std_msgs.msg import Int16, Bool
 import sys
 drone_id=sys.argv[1]
@@ -18,14 +18,19 @@ drone_id=sys.argv[1]
 def move_cb(msg):
     if (msg.header.frame_id == "null"):
         return
-    # temp_pose = Pose()
-    # temp_pose=msg.pose.pose
     model_state = ModelState()
     model_state.model_name = "drone_"+drone_id
+    
+    # rospy.wait_for_service('/gazebo/get_model_state')
+    # get_model_state = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+    # current_model_state = get_model_state(model_state.model_name, "")
+    # model_state.pose=current_model_state.pose
+    
     model_state.pose=msg.pose.pose #temp_pose
     model_state.twist=msg.twist.twist
     rospy.wait_for_service('/gazebo/set_model_state')
     set_state = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
+    
     resp = set_state(model_state)
     if not resp:
         print("Object cannot be moved")

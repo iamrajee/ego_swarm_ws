@@ -11,6 +11,7 @@ import struct
 import threading
 from rospy_message_converter import message_converter
 import threading
+from io import BytesIO
 
 UDP_PORT = 8081
 BUF_LEN = 1048576  # 1MB
@@ -60,7 +61,8 @@ def udp_bind_to_port(port):
 
 def serialize_topic(msg_type, msg):
     msg_type_bytes = struct.pack('I', msg_type)
-    msg_size_bytes = struct.pack('I', len(msg.serialize()))
+    buff=bytearray() #BytesIO()
+    msg_size_bytes = struct.pack('I', len(msg.serialize(buff)))
     msg_bytes = message_converter.convert_ros_message_to_dictionary(msg)
     return msg_type_bytes + msg_size_bytes + msg_bytes
 
@@ -72,6 +74,26 @@ def deserialize_topic(data, msg_type):
     msg_size = struct.unpack('I', data[4:8])[0]
     msg_data = data[8:8 + msg_size]
     return message_converter.convert_dictionary_to_ros_message(msg_data, type(msg))
+
+# seq=0
+# def serialize_topic(msg_type, msg):
+#     global seq
+#     msg_size = len(rospy.msg.serialize_message(msg))
+#     seq+=1
+#     serialized_msg = struct.pack('I', msg_type) + struct.pack('I', msg_size) + rospy.msg.serialize_message(msg)
+#     return serialized_msg
+
+# def deserialize_topic(msg_data):
+#     msg_type = struct.unpack('I', msg_data[:4])[0]
+#     msg_size = struct.unpack('I', msg_data[4:8])[0]
+#     msg_buffer = msg_data[8:]
+
+#     msg_class = rospy.msg.get_message_class(msg_type)
+#     msg = msg_class()
+    
+#     rospy.msg.deserialize_message(msg, msg_buffer)
+    
+#     return msg
 
 
 def odom_sub_udp_cb(msg):
@@ -111,7 +133,7 @@ def joy_sub_udp_cb(msg):
 def udp_recv_fun():
     global udp_server_fd, udp_recv_buf, other_odoms_pub, one_traj_pub, mandatory_stop_pub, goal_pub, joy_pub
 
-    udp_server_fd = udp_bind_to_port(UDP_PORT, udp_server_fd)
+    udp_server_fd = udp_bind_to_port(UDP_PORT)
     
     # while True:
     #     try:
@@ -176,9 +198,8 @@ def main():
     # nh = rospy.get_param("~")
 
     udp_ip = rospy.get_param("broadcast_ip", "127.0.0.255")
-    drone_id = rospy.get_param("drone_id", 0)#-1)
+    drone_id = rospy.get_param("drone_id", 0) #-1)
     odom_broadcast_freq = rospy.get_param("odom_max_freq", 1000.0)
-    
     odom_sub_udp_cb.t_last = rospy.Time.now()
     
 
@@ -214,6 +235,11 @@ def main():
 
     udp_server_fd.close()
     udp_send_fd.close()
-
-if __name__ == "__main__":
-    main()
+    
+    
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        rospy.loginfo("Ctrl+C detected. Shutting down...")
+        rospy.signal_shutdown("Ctrl+C detected")

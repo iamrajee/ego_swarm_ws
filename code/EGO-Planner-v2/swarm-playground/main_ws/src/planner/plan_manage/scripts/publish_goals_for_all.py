@@ -7,23 +7,23 @@ import time
 delay_time =0#1    
 delay_between_formation_time =10
   
-x0,y0=0.5,0.0
-x1,y1=0.0,0.5
-x2,y2=-0.5,0.0
-x3,y3=0.0,-0.5
-x4,y4=0.5,0.5
-x5,y5=-0.5,0.5
-x6,y6=-0.5,-0.5
-x7,y7=0.5,-0.5
-
 # x0,y0=0.5,0.0
 # x1,y1=0.0,0.5
 # x2,y2=-0.5,0.0
 # x3,y3=0.0,-0.5
-# x4,y4=0.25,0.25
-# x5,y5=-0.25,0.25
-# x6,y6=-0.25,-0.25
-# x7,y7=0.25,-0.25
+# x4,y4=0.5,0.5
+# x5,y5=-0.5,0.5
+# x6,y6=-0.5,-0.5
+# x7,y7=0.5,-0.5
+
+x0,y0=0.5,0.0
+x1,y1=0.0,0.5
+x2,y2=-0.5,0.0
+x3,y3=0.0,-0.5
+x4,y4=0.25,0.25
+x5,y5=-0.25,0.25
+x6,y6=-0.25,-0.25
+x7,y7=0.25,-0.25
 
 # x0,y0=1.0,0.0
 # x1,y1=0.0,1.0
@@ -65,12 +65,13 @@ def publish_goal():
     global goaly
     rospy.init_node('goal_publisher', anonymous=True)
     goal_pub = rospy.Publisher('/goal_with_id', GoalSet, queue_size=10)
-    rate = rospy.Rate(1)  # 10 Hz
+    rate = rospy.Rate(10)  # 10 Hz
     
     while goal_pub.get_num_connections() == 0:
         rospy.loginfo("Waiting for subscribers to connect")
         rospy.sleep(1)
     
+    # while True:
     goalx,goaly=2.0,2.0
     move_formation(goal_pub, rate)
     goalx,goaly=2.0,-2.0
@@ -86,7 +87,7 @@ def publish_goal():
 
 if __name__ == '__main__':
     try:
-        time.sleep(10)
+        # time.sleep(10)
         publish_goal()
     except KeyboardInterrupt:
         rospy.loginfo("Ctrl+C detected. Shutting down...")
